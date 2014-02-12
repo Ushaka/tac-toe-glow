@@ -7,6 +7,8 @@ public class TriggerCell : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		playerType = "-";
 	
 	}
 	
@@ -17,7 +19,7 @@ public class TriggerCell : MonoBehaviour {
 	/**
 	 * Update cell state with correct player type 
 	 */
-	void OnCollisionStay(Collider other) {
+	void OnCollisionStay(Collision other) {
 
 		if(other.gameObject.name.Equals("Circle")) {
 			playerType = "o";
