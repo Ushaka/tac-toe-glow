@@ -4,8 +4,24 @@ using System.Collections.Generic;
 
 public class TicTacToe : MonoBehaviour {
 
-	public string[,] cells;
+	private static TicTacToe instance = null;
 
+	public static TicTacToe Instance
+	{
+		get
+		{
+			if (instance==null)
+			{
+				instance = new TicTacToe();
+			}
+			return instance;
+		}
+	}
+	public string[,] cells;
+	public static bool playerTurn;
+	
+	
+	
 	// Use this for initialization
 	void Start () {
 		// Initialize the map
@@ -45,6 +61,10 @@ public class TicTacToe : MonoBehaviour {
 			Debug.Log ("The winner is: " + winner);
 		}
 	
+	}
+	
+	public void aiTurn() {
+
 	}
 	
 	private string findWinner() {
