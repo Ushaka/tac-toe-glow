@@ -24,10 +24,11 @@ public class TriggerCell : MonoBehaviour {
 
 	void OnMouseDown() {
 
-		if (gamestate.playerTurn) {
+		if (gamestate.playerTurn && TicTacToe.isFalling == false) {
 			if (playerType.Equals ("-")) {
 				Debug.Log ("You can place here");
 				Instantiate(datX, fallPosition, Quaternion.identity);
+				TicTacToe.isFalling = true;
 				StartCoroutine(gamestate.WaitABit(3));
 				if(gamestate.findWinner().Equals("x")) {
 					Debug.Log ("Player won!");
@@ -56,9 +57,12 @@ public class TriggerCell : MonoBehaviour {
 	void OnCollisionStay(Collision other) {
 
 		if(other.gameObject.tag.Equals("o")) {
+			TicTacToe.isFalling = false;
 			playerType = "o";
 		} else if(other.gameObject.tag.Equals("x")) {
 			playerType = "x";
+			TicTacToe.isFalling = false;
+
 		}
 	}
 }
