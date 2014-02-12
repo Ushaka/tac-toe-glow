@@ -5,11 +5,16 @@ public class TriggerCell : MonoBehaviour {
 
 	public TicTacToe gamestate;
 	public string playerType;
+	public Vector3 fallPosition;
+	public GameObject datX;
+	public GameObject datO;
 
 	// Use this for initialization
 	void Start () {
-		gamestate = TicTacToe.Instance;
+		gamestate = GameObject.Find ("GameState").GetComponent<TicTacToe> ();
 		playerType = "-";
+		fallPosition = this.gameObject.transform.position;
+		fallPosition.y += 5;
 
 	}
 	
@@ -22,7 +27,12 @@ public class TriggerCell : MonoBehaviour {
 		if (gamestate.playerTurn) {
 			if (playerType.Equals ("-")) {
 				Debug.Log ("You can place here");
-				Instantiate();
+				Instantiate(datX, fallPosition, Quaternion.identity);
+				StartCoroutine(gamestate.WaitABit(3));
+				if(gamestate.findWinner().Equals("x")) {
+					Debug.Log ("Player won!");
+				}
+				StartCoroutine(gamestate.WaitABit(3));
 			} else {
 				Debug.Log ("You cannot place here");
 			}
@@ -33,15 +43,21 @@ public class TriggerCell : MonoBehaviour {
 			Debug.Log("Not players turn");
 		}
 	}
+	
+
+	public void aiDrop() {
+		Instantiate(datO, fallPosition, Quaternion.identity);
+		gamestate.playerTurn = true;
+	}
 
 	/**
 	 * Update cell state with correct player type 
 	 */
 	void OnCollisionStay(Collision other) {
 
-		if(other.gameObject.name.Equals("Circle")) {
+		if(other.gameObject.tag.Equals("o")) {
 			playerType = "o";
-		} else if(other.gameObject.name.Equals("WholeX")) {
+		} else if(other.gameObject.tag.Equals("x")) {
 			playerType = "x";
 		}
 	}
