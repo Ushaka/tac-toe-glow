@@ -24,38 +24,49 @@ public class TriggerCell : MonoBehaviour {
 
 	void OnMouseDown() {
 
-		if (gamestate.playerTurn && TicTacToe.isFalling == false) {
+		if (TicTacToe.playersTurn.Equals("player1") && TicTacToe.isFalling == false) {
 			if (playerType.Equals ("-")) {
-				Debug.Log ("You can place here");
+				TicTacToe.counter += 1; 
 				Instantiate(datX, fallPosition, Quaternion.identity);
-				TicTacToe.isFalling = true;
-				StartCoroutine(gamestate.WaitABit(3));
-				if(gamestate.findWinner().Equals("x")) {
-					Debug.Log ("Player won!");
-				}
-				StartCoroutine(gamestate.WaitABit(3));
+				TicTacToe.isFalling = true; 
+				TicTacToe.playersTurn = "player2"; 
+				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player O turn!"; 
+				//TicTacToe.isFalling = true;
+				//StartCoroutine(gamestate.WaitABit(3));
+				//StartCoroutine(gamestate.WaitABit(3));
 			} else {
 				Debug.Log ("You cannot place here");
 			}
 			Debug.Log (playerType);
-			gamestate.playerTurn = false;
-			gamestate.aiTurn();
-		} else {
-			Debug.Log("Not players turn");
+		//	gamestate.playerTurn = false;
+		//	gamestate.aiTurn();
+			}
+		if (TicTacToe.playersTurn.Equals ("player2") && TicTacToe.isFalling == false) {
+			if (playerType.Equals ("-")) {
+				TicTacToe.counter += 1; 
+				Instantiate(datO, fallPosition, Quaternion.identity);
+				TicTacToe.isFalling = true;
+				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player X turn!"; 
+				TicTacToe.playersTurn = "player1"; 
+
+			}
+			else{
+					Debug.Log ("You cannot place here"); 
+				}
 		}
+
 	}
 	
 
 	public void aiDrop() {
 		Instantiate(datO, fallPosition, Quaternion.identity);
-		gamestate.playerTurn = true;
+		//gamestate.playerTurn = true;
 	}
 
 	/**
 	 * Update cell state with correct player type 
 	 */
 	void OnCollisionStay(Collision other) {
-
 		if(other.gameObject.tag.Equals("o")) {
 			TicTacToe.isFalling = false;
 			playerType = "o";
