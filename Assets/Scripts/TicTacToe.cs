@@ -9,7 +9,7 @@ public class TicTacToe : MonoBehaviour {
 	public static bool isFalling; 
 	public static string playersTurn; 
 	public static int counter; 
-	public bool thereIsAWinner; 
+	public static bool thereIsAWinner; 
 
 	// Use this for initialization
 	void Start () {
@@ -50,15 +50,16 @@ public class TicTacToe : MonoBehaviour {
 				bool done = CheckForTie(); 
 		}
 		if (findWinner().Equals ("o")) {
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is O!"; 
+			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is O! Press Enter to restart"; 
 
 		}
 		if (findWinner().Equals ("x")) {
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is X!"; 
+			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is X! Press Enter to restart "; 
 			
 		}
 	
 		if (Input.GetKey (KeyCode.Return)) {
+			thereIsAWinner = false;
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
@@ -127,7 +128,7 @@ public class TicTacToe : MonoBehaviour {
 	public IEnumerator WaitForTieText(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
 		if(thereIsAWinner == false){
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Tie noobs! Press enter to restart!"; 
+			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "It's a TIE! Press enter to restart!"; 
 		}
 
 	}

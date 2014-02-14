@@ -24,14 +24,15 @@ public class TriggerCell : MonoBehaviour {
 
 	void OnMouseDown() {
 
-		if (TicTacToe.playersTurn.Equals("player1") && TicTacToe.isFalling == false) {
+		if (TicTacToe.playersTurn.Equals("player1") && TicTacToe.isFalling == false && TicTacToe.thereIsAWinner == false) {
 			if (playerType.Equals ("-")) {
-				playerType = "o";
+				TicTacToe.isFalling = true;
+				playerType = "x";
 				TicTacToe.counter += 1; 
 				Instantiate(datX, fallPosition, Quaternion.identity);
 				TicTacToe.isFalling = true; 
 				TicTacToe.playersTurn = "player2"; 
-				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player O turn!"; 
+				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player: O"; 
 				//TicTacToe.isFalling = true;
 				//StartCoroutine(gamestate.WaitABit(3));
 				//StartCoroutine(gamestate.WaitABit(3));
@@ -42,13 +43,13 @@ public class TriggerCell : MonoBehaviour {
 		//	gamestate.playerTurn = false;
 		//	gamestate.aiTurn();
 			}
-		if (TicTacToe.playersTurn.Equals ("player2") && TicTacToe.isFalling == false) {
+		if (TicTacToe.playersTurn.Equals ("player2") && TicTacToe.isFalling == false && TicTacToe.thereIsAWinner == false) {
 			if (playerType.Equals ("-")) {
-				playerType = "x";
+				TicTacToe.isFalling = true;
+				playerType = "o";
 				TicTacToe.counter += 1; 
 				Instantiate(datO, fallPosition, Quaternion.identity);
-				TicTacToe.isFalling = true;
-				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player X turn!"; 
+				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player: X"; 
 				TicTacToe.playersTurn = "player1"; 
 
 			}
