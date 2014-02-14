@@ -26,6 +26,7 @@ public class TriggerCell : MonoBehaviour {
 
 		if (TicTacToe.playersTurn.Equals("player1") && TicTacToe.isFalling == false) {
 			if (playerType.Equals ("-")) {
+				playerType = "o";
 				TicTacToe.counter += 1; 
 				Instantiate(datX, fallPosition, Quaternion.identity);
 				TicTacToe.isFalling = true; 
@@ -43,6 +44,7 @@ public class TriggerCell : MonoBehaviour {
 			}
 		if (TicTacToe.playersTurn.Equals ("player2") && TicTacToe.isFalling == false) {
 			if (playerType.Equals ("-")) {
+				playerType = "x";
 				TicTacToe.counter += 1; 
 				Instantiate(datO, fallPosition, Quaternion.identity);
 				TicTacToe.isFalling = true;
@@ -69,9 +71,7 @@ public class TriggerCell : MonoBehaviour {
 	void OnCollisionStay(Collision other) {
 		if(other.gameObject.tag.Equals("o")) {
 			TicTacToe.isFalling = false;
-			playerType = "o";
 		} else if(other.gameObject.tag.Equals("x")) {
-			playerType = "x";
 			TicTacToe.isFalling = false;
 
 		}
