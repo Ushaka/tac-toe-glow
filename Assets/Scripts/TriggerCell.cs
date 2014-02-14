@@ -32,7 +32,7 @@ public class TriggerCell : MonoBehaviour {
 				Instantiate(datX, fallPosition, Quaternion.identity);
 				TicTacToe.isFalling = true; 
 				TicTacToe.playersTurn = "player2"; 
-				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player: O"; 
+				GameObject.Find ("playerText").GetComponent<TextMesh>().text = "Player: O"; 
 				//TicTacToe.isFalling = true;
 				//StartCoroutine(gamestate.WaitABit(3));
 				//StartCoroutine(gamestate.WaitABit(3));
@@ -49,7 +49,7 @@ public class TriggerCell : MonoBehaviour {
 				playerType = "o";
 				TicTacToe.counter += 1; 
 				Instantiate(datO, fallPosition, Quaternion.identity);
-				GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "Player: X"; 
+				GameObject.Find ("playerText").GetComponent<TextMesh>().text = "Player: X"; 
 				TicTacToe.playersTurn = "player1"; 
 
 			}

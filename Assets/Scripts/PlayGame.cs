@@ -5,7 +5,7 @@ public class PlayGame : MonoBehaviour
 {
 		public static bool gameStarted = false;
 
-		void OnMouseUp ()
+		void OnMouseDown ()
 		{
 				if (gameStarted == false) {
 						GameObject.Find ("Board").GetComponent<Rigidbody> ().useGravity = true;

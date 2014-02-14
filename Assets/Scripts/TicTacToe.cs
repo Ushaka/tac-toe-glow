@@ -49,16 +49,16 @@ public class TicTacToe : MonoBehaviour {
 				bool done = CheckForTie(); 
 		}
 		if (findWinner().Equals ("o")) {
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is O! Press Enter to restart"; 
-
+			StartCoroutine(WaitABit(1.5f, "o"));
+			 
 		}
 		if (findWinner().Equals ("x")) {
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "The winner is X! Press Enter to restart "; 
-			
+			StartCoroutine(WaitABit(1.5f, "x")); 
 		}
 	
-		if (Input.GetKey (KeyCode.Return)) {
+		if (Input.touchCount == 1 || Input.GetKey(KeyCode.Return)) {
 			thereIsAWinner = false;
+			PlayGame.gameStarted = false;
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
@@ -127,9 +127,12 @@ public class TicTacToe : MonoBehaviour {
 	public IEnumerator WaitForTieText(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
 		if(thereIsAWinner == false){
-			GameObject.Find ("playerTurn").GetComponent<GUIText>().guiText.text = "It's a TIE! Press enter to restart!"; 
+			GameObject.Find ("playerText").GetComponent<TextMesh>().text = "It's a TIE! .. press enter. Now!"; 
 		}
-
+	}
+	IEnumerator WaitABit(float waitTime, string Player){
+		yield return new WaitForSeconds(waitTime);
+		GameObject.Find ("playerText").GetComponent<TextMesh>().text = "The winner is " + Player + "! Press Enter to restart";
 	}
 	
 	
