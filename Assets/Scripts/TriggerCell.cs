@@ -75,9 +75,8 @@ public class TriggerCell : MonoBehaviour {
 		} else if(other.gameObject.tag.Equals("x")) {
 			TicTacToe.isFalling = false;
 		}
-		if(other.gameObject.name.Equals("MainPlane")){
-			Destroy(GameObject.Find ("MainBoard").GetComponent<Rigidbody>());
+
 	}
 
 }
-}
+

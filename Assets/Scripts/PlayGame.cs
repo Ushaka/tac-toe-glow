@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayGame : MonoBehaviour
 {
-		public bool gameStarted = false;
+		public static bool gameStarted = false;
 
 		void OnMouseUp ()
 		{
