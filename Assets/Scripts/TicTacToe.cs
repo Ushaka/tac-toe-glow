@@ -34,7 +34,6 @@ public class TicTacToe : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		cells [0, 0] = GameObject.Find ("Cell1").GetComponent<TriggerCell> ();
 		cells [0, 1] = GameObject.Find ("Cell2").GetComponent<TriggerCell> ();
 		cells [0, 2] = GameObject.Find ("Cell3").GetComponent<TriggerCell> ();
