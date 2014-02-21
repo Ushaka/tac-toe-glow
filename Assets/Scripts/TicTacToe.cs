@@ -132,7 +132,7 @@ public class TicTacToe : MonoBehaviour {
 	}
 	IEnumerator WaitABit(float waitTime, string Player){
 		yield return new WaitForSeconds(waitTime);
-		GameObject.Find ("playerText").GetComponent<TextMesh>().text = "The winner is " + Player + "! Press Enter to restart";
+		GameObject.Find ("playerText").GetComponent<TextMesh>().text = "The winner is " + Player + "! Press Enter to restart!";
 	}
 	
 	
